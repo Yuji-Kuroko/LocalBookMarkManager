@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.entryArea {
+			border-bottom: solid black 2px;
+		}
+		.deleteItem {
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+<h1>テスト用URL保持</h1>
+<div class="entryArea">
+	<h3>保持したいURLを入力</h3>
+	<p>
+		URL:<input id="iUrl" type="text" /><br /> 
+		表示名:<input id="iName" type="text" /><br />
+		<button id="submitUrl">登録</button>
+	</p>
+</div>
+
+<div class="resultArea">
+<!-- ここに追加 -->
+<ol id="UrlList">
+
+
+</ol>
+
+
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://rawgithub.com/BorisMoore/jsrender/master/jsrender.min.js"></script>
+
+<!-- テンプレート -->
+<script id="urlAddTemplate" type="text/x-jsrender">
+	<li><button class="deleteItem">削除</button><a target="_blank" href="{{:url}}">{{:name}}</a></li>
+</script>
+
+<script>
+	var template = $.templates("#urlAddTemplate");
+	//	登録処理
+	$(document).on("click", "#submitUrl", function(){
+		var renderdHtml = template.render({
+			url: $("#iUrl").val(),
+			name:$("#iName").val()
+			}
+		);
+		$("#UrlList").append(renderdHtml);
+
+		//	登録後、入力ボックスを空にする
+		$("#iUrl").val("");
+		$("#iName").val("");
+	});
+
+	//	削除
+	$(document).on("click", ".deleteItem", function(){
+		$(this).closest("li").remove();
+	});
+
+	//	閉じるとき確認
+	$(window).on("beforeunload",function(e){
+    	return "入力した項目は削除されます。よろしいですか？";
+	});
+</script>
+</body>
+</html>
