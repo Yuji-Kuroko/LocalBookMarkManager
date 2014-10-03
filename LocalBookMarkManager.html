@@ -33,13 +33,15 @@
 </div>
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://rawgithub.com/BorisMoore/jsrender/master/jsrender.min.js"></script>
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/jsrender.min.js"></script>
 
 <!-- テンプレート -->
 <script id="urlAddTemplate" type="text/x-jsrender">
 	<li><button class="deleteItem">削除</button><a target="_blank" href="{{:url}}">{{:name}}</a></li>
 </script>
+
 
 <script>
 	var template = $.templates("#urlAddTemplate");
